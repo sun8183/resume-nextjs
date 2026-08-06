@@ -2,8 +2,9 @@ import profile from './profile';
 import introduce from './introduce';
 import skill from './skill';
 import experience from './experience';
-import openSource from './openSource';
+import troubleshooting from './troubleshooting';
 import project from './project';
+import portfolio from './portfolio';
 import presentation from './presentation';
 import education from './education';
 import article from './article';
@@ -15,9 +16,10 @@ import { _global } from './_global';
 import { IProfile } from '../component/profile/IProfile';
 import { IIntroduce } from '../component/introduce/IIntroduce';
 import { ISkill } from '../component/skill/ISkill';
-import { IOpenSource } from '../component/openSource/IOpenSource';
+import { ITroubleshooting } from '../component/troubleshooting/ITroubleshooting';
 import { IExperience } from '../component/experience/IExperience';
 import { IProject } from '../component/project/IProject';
+import { IPortfolio } from '../component/portfolio/IPortfolio';
 import { IPresentation } from '../component/presentation/IPresentation';
 import { IEducation } from '../component/education/IEducation';
 import { IEtc } from '../component/etc/IEtc';
@@ -29,9 +31,10 @@ const Payload: Payload = {
   profile,
   introduce,
   skill,
-  openSource,
   experience,
   project,
+  troubleshooting,
+  portfolio,
   presentation,
   article,
   education,
@@ -45,9 +48,10 @@ interface Payload {
   profile: IProfile.Payload;
   introduce: IIntroduce.Payload;
   skill: ISkill.Payload;
-  openSource: IOpenSource.Payload;
   experience: IExperience.Payload;
   project: IProject.Payload;
+  troubleshooting: ITroubleshooting.Payload;
+  portfolio: IPortfolio.Payload;
   presentation: IPresentation.Payload;
   education: IEducation.Payload;
   article: IArticle.Payload;

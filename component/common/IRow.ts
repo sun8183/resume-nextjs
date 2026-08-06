@@ -5,14 +5,18 @@ export declare namespace IRow {
   }
 
   export interface Left {
-    title: string;
+    title?: string;
     subTitle?: JSX.Element;
   }
 
   export interface Right {
     title?: string;
     subTitle?: string;
+    /** ### 한줄소개 (descriptions 목록과 별개로, 불릿 없이 표시된다) */
+    summary?: string;
     descriptions?: Description[];
+    /** ### descriptions 의 불릿 마커를 숨기고 싶을 경우 */
+    hideDescriptionBullet?: boolean;
   }
 
   /**

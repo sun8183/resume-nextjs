@@ -30,7 +30,7 @@ function Component({ payload }: PropsWithChildren<{ payload: Payload }>) {
         <Col md={9} sm={12}>
           {createNameArea(name)}
           {createProfileContactMap(contact)}
-          {createNoticeArea(notice)}
+          {notice && createNoticeArea(notice)}
         </Col>
       </Row>
     </div>
@@ -61,7 +61,7 @@ function createProfileContactMap(contacts: Payload['contact']) {
   );
 }
 
-function createNoticeArea(notice: Payload['notice']) {
+function createNoticeArea(notice: NonNullable<Payload['notice']>) {
   return (
     <EmptyRowCol>
       <Alert color="secondary" role="alert" className="mt-3">

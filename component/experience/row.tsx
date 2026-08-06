@@ -1,6 +1,6 @@
 import { Badge, Col, Row } from 'reactstrap';
 
-import { DateTime } from 'luxon';
+import { DateTime, Duration } from 'luxon';
 import { PropsWithChildren } from 'react';
 import { IExperience } from './IExperience';
 import { Style } from '../common/Style';
@@ -29,27 +29,16 @@ export default function ExperienceRow({
     .slice()
     .sort((a, b) => b.startedAtDate.toMillis() - a.startedAtDate.toMillis());
 
-  const minStartedAt = DateTime.min(...sortedPositions.map((position) => position.startedAtDate));
   const isCurrentlyEmployed = sortedPositions.some((position) => position.isCurrent);
 
-  function hasEndedAtDate(
-    position: PositionWithDates,
-  ): position is PositionWithDates & { endedAtDate: DateTime } {
-    return position.endedAtDate !== null;
-  }
-
-  const endedAtDates = sortedPositions
-    .filter(hasEndedAtDate)
-    .map((position) => position.endedAtDate);
-
-  let maxEndedAt: DateTime;
-  if (isCurrentlyEmployed) {
-    maxEndedAt = DateTime.local();
-  } else if (endedAtDates.length > 0) {
-    maxEndedAt = DateTime.max(...endedAtDates);
-  } else {
-    maxEndedAt = DateTime.local();
-  }
+  // 이직 공백 등 재직하지 않은 구간을 제외하고, 각 position 의 실제 재직 기간만 합산
+  // (시작월과 종료월을 모두 포함하여 계산하기 위해 종료일에 1개월을 더한다)
+  const totalDuration = sortedPositions
+    .reduce((acc, position) => {
+      const endedAt = (position.endedAtDate ?? DateTime.local()).plus({ month: 1 });
+      return acc.plus(endedAt.diff(position.startedAtDate, ['years', 'months']));
+    }, Duration.fromObject({ years: 0, months: 0 }))
+    .normalize();
 
   const periodTitle = createOverallWorkingPeriod(sortedPositions);
   const hasMultiplePositions = sortedPositions.length > 1;
@@ -72,7 +61,7 @@ export default function ExperienceRow({
                 </Badge>
               )}
               <Badge color="info" className="ml-1">
-                {Util.getFormattingDuration(minStartedAt, maxEndedAt)}
+                {totalDuration.toFormat(Util.LUXON_DATE_FORMAT.DURATION_KINDNESS)}
               </Badge>
             </span>
           </h4>

@@ -5,12 +5,11 @@ const introduce: IIntroduce.Payload = {
   disable: false,
 
   contents: [
-    'As the cherished emblem of the Linux kernel, I have become synonymous with open-source philosophy and the free software movement worldwide. My career began in the icebergs of development, where the seeds of my fascination with operating systems first sprouted. From a mere hatchling in the vast sea of code, I quickly ascended to become a pivotal figure in the Linux community. My journey has been marked by relentless dedication to system integrity, scalability, and robustness. Under my vigilant watch, countless servers have achieved unparalleled uptimes, and systems have been optimized to run like the well-oiled machines they are intended to be.',
-    'In the world of zeros and ones, my expertise has been instrumental in pioneering advancements in Linux system engineering. My flippers have crafted meticulous kernel enhancements, each aimed at streamlining performance and bolstering security across distributed networks. I am known in the community for my ability to dive deep into complex codebases and emerge with pearls of innovation that drive the collective progress of Linux environments. Advocacy is also a part of my plumage – spreading the word about the virtues of open-source and encouraging the adoption of Linux, from personal desktops to corporate data centers. As a mentor, I have nurtured the growth of young hatchlings into seasoned professionals, contributing to the diversity and vitality of our ecosystem.',
+    '월 100만 건 규모의 문자·알림톡 발송 중계 서비스와 PG 정기과금 시스템을 운영하며, 중복 발송·중복 결제 같은 정합성 장애를 구조적으로 차단해온 5년차 백엔드 개발자입니다.',
+    '템플릿 메서드 패턴 기반 PG 모듈 설계, 전송 멱등 처리를 통한 중복 발송 방지, ShedLock 기반 분산 스케줄러 제어 등 확장성과 안정성을 고려한 구조 설계를 지향합니다.',
+    '장애 모니터링 알람 체계 구축과 재처리 구조 설계 경험을 바탕으로 운영 대응 효율을 개선해왔습니다.',
   ],
-  sign: 'Tux',
-  // sign: packageJson.author.name,
-  // latestUpdated: '2019-07-24',
+  sign: '',
   latestUpdated: lastestUpdatedAt,
 };
 

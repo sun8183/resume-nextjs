@@ -1,44 +1,34 @@
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faBlog, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { IProfile } from '../component/profile/IProfile';
-import image from '../asset/sample_tux.png';
+import image from '../asset/profile.jpg';
 
 const profile: IProfile.Payload = {
   disable: false,
 
-  // image: 'https://resume.yowu.dev/static/image/profile_2019.png',
   image,
   name: {
-    title: 'Tux Linux Penguin',
-    small: '(Tux)',
+    title: '장애 대응 및 서비스 안정성 개선 경험을 갖춘 5년차 개발자 임태양',
+    small: '',
   },
   contact: [
     {
-      title: 'tux@linux.org',
-      link: 'mailto:tux@linux.org',
+      title: '4sunskyhyun@naver.com',
+      link: 'mailto:4sunskyhyun@naver.com',
       icon: faEnvelope,
     },
     {
-      title: 'Please contact me by email',
-      icon: faPhone,
-      badge: true,
+      title: 'Tech Blog',
+      link: 'https://sunhistory.tistory.com/',
+      icon: faBlog,
     },
     {
-      link: 'https://github.com/uyu423/resume-nextjs',
+      title: 'sun8183 (LimTaeYang)',
+      link: 'https://github.com/sun8183',
       icon: faGithub,
     },
-    {
-      link: 'https://www.facebook.com/groups/ubuntu.ko',
-      icon: faFacebook,
-    },
-  ],
-  notice: {
-    title:
-      "The content below is all fictitious and is just a sample from 'https://github.com/uyu423/resume-nextjs'.",
-    icon: faBell,
-  },
+  ]
 };
 
 export default profile;

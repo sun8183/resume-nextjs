@@ -4,39 +4,182 @@ const project: IProject.Payload = {
   disable: false,
   list: [
     {
-      title: 'Linux Kernel Optimization Project',
-      startedAt: '2020-06',
-      where: 'Linux Foundation',
+      title: 'PG 정기과금 서비스 도입',
+      where: '슈어엠 주식회사 (단독 설계·개발)',
+      startedAt: '2025-11',
+      endedAt: '2026-02',
       descriptions: [
+        { content: '배경', weight: 'BOLD' },
         {
           content:
-            'Initiated and lead a collaborative project aimed at optimizing the Linux Kernel for various hardware architectures.',
+            '기업 고객 30곳의 부가 서비스 비용이 전용 계좌 기반 수기 정산으로 운영되어 담당자 누락 위험과 고객 관리 포인트 증가 문제가 발생. 정기과금 카드 결제 자동화 도입을 위해 카드 등록 모듈 및 자동화 스케줄러 전반을 단독 설계·구축.',
+        },
+        { content: '구현', weight: 'BOLD' },
+        {
+          content: '템플릿 메서드 패턴 기반 PG 결제 모듈 설계',
+          weight: 'MEDIUM',
+          descriptions: [
+            {
+              content:
+                '카드 등록 및 결제 흐름(등록 시작 → 결제 → 결제 취소 → 등록 완료)을 템플릿 메서드 패턴으로 추상화. 공통 흐름은 상위 클래스에서 정의하고 PG사별 세부 로직만 하위 클래스에서 구현하여, 신규 PG사 추가 및 교체 시 기존 코드 수정 없이 확장 가능한 구조 설계',
+            },
+            {
+              content:
+                '운영 중 특정 PG사 장애 발생 시, DB에 저장된 활성 PG사 설정값 변경만으로 재배포 없이 신규 카드 등록 트래픽을 대체 PG사 구현체로 전환할 수 있도록 설계. 장애 상황에서도 신규 가입 유입 손실을 최소화',
+            },
+          ],
+        },
+        {
+          content: '결제 상태 단계별 분리 및 재처리 구조 설계',
+          weight: 'MEDIUM',
+          descriptions: [
+            {
+              content:
+                '결제 실패를 비즈니스 실패(잔액 부족, 한도 초과 등)와 PG사 실패(응답 지연, 일시적 오류 등)로 구분하여 처리. 결제 프로세스를 등록 시작, 결제, 결제 취소, 등록 완료 등 단계별 상태로 분리하고 각 단계의 처리 결과를 DB에 기록',
+            },
+            {
+              content:
+                '비즈니스 실패는 재시도 없이 고객 알림 처리하고, PG사 실패는 해당 구간부터 재처리·재시도가 가능하도록 설계. 전체 결제 흐름을 처음부터 재실행하지 않고도 장애 복구가 가능해졌으며, 불필요한 재시도로 인한 중복 처리 및 리소스 낭비 방지',
+            },
+          ],
+        },
+        {
+          content: '이중화 환경 스케줄러 단일 실행 보장',
+          weight: 'MEDIUM',
+          descriptions: [
+            {
+              content:
+                '이중화 환경에서 동일 스케줄러가 양쪽 서버에서 동시 실행되어 중복 결제가 발생할 수 있는 점을 설계 단계에서 식별하고, ShedLock 기반 분산 락으로 단일 실행을 보장하도록 초기 설계에 반영',
+            },
+          ],
+        },
+        {
+          content: '장애 모니터링 및 알림 체계 구축',
+          weight: 'MEDIUM',
+          descriptions: [
+            {
+              content:
+                'PG 처리 스케줄러 실행 결과를 단계별로 모니터링하고, 처리 실패 및 이상 감지 시 Rocket.Chat REST API를 통해 즉시 알림이 발송되는 장애 알림 체계 구축. 실패 유형별로 알림 발송 기준을 세분화',
+            },
+          ],
+        },
+        { content: '성과', weight: 'BOLD' },
+        { content: '기업 고객 30곳 대상 수기 정산 프로세스를 카드 자동결제로 전환, 담당자 수작업 및 누락 리스크 제거' },
+        {
+          content:
+            '템플릿 메서드 패턴 기반 추상화로 PG사 교체 및 신규 PG사 추가 시 기존 코드 수정 없이 구현체 교체만으로 대응, 확장 비용 최소화',
         },
         {
           content:
-            'Achieved significant improvements in system performance and resource management.',
-          weight: 'MEDIUM',
-          descriptions: [
-            { content: '30% improvement in system resource efficiency' },
-            { content: 'Job Scheduler Refactor and Optimization' },
-          ],
+            '이중화 환경의 스케줄러 중복 실행 가능성을 설계 단계에서 차단, 운영 기간 중 중복 결제 및 데이터 정합성 문제 미발생',
+        },
+        {
+          content: '결제 상태 단계별 분리로 장애 발생 시 실패 구간부터 재처리 가능, 전체 결제 흐름 재실행 없이 복구 가능한 구조 확보',
         },
       ],
     },
     {
-      title: 'Global Linux Bootcamp',
-      startedAt: '2017-05',
-      endedAt: '2019-12',
-      where: 'Open Source Community',
+      title: '해외 B2C 국제 문자 대행 서비스',
+      where: '슈어엠 주식회사 (단독 설계·개발)',
+      startedAt: '2025-02',
+      endedAt: '2025-11',
       descriptions: [
+        { content: '배경', weight: 'BOLD' },
         {
           content:
-            'Organized and conducted training bootcamps focusing on Linux system engineering skills.',
+            '다국어 리소스가 XML 및 JSP 소스 전반에 분산되어 있어 국가 추가 시 관리 복잡도가 높았고, JSP 렌더링 성능 저하 문제도 있어 프론트엔드 아키텍처 전반을 Vue.js 기반으로 리뉴얼 진행',
+        },
+        { content: '구현', weight: 'BOLD' },
+        {
+          content: 'Vue i18n 기반 다국어 국제화 구조 재설계',
+          weight: 'MEDIUM',
+          descriptions: [
+            {
+              content:
+                '기존 XML 기반 국제화 구조를 Vue i18n + JSON 언어팩으로 전환. 화면 단위 키 체계를 설계하여 13개국 다국어 지원 및 신규 언어 추가 시 기존 코드 수정 없이 JSON 파일 추가만으로 확장 가능한 구조 확보',
+            },
+            {
+              content:
+                '도메인 기반으로 분기되던 다국어 렌더링 구조를 쿠키 기반으로 전환. 사용자 언어 설정을 세션 전반에 걸쳐 일관되게 유지하고, 도메인 분기에 따른 불필요한 리렌더링 제거',
+            },
+          ],
         },
         {
-          content:
-            'Successfully trained over 5,000 participants in system administration and security. ',
+          content: 'OAuth 2.0 + JWT 인증 아키텍처 설계 및 구현',
+          weight: 'MEDIUM',
+          descriptions: [
+            { content: 'Google OAuth 2.0 Authorization Code Flow 기반 인증 시스템 설계' },
+            {
+              content:
+                'JWT Refresh Token 로테이션 도입. 토큰 사용 시마다 Refresh Token을 재발급하고 기존 토큰을 즉시 무효화하여, 토큰이 탈취되더라도 재사용을 차단',
+            },
+          ],
         },
+        { content: '성과', weight: 'BOLD' },
+        {
+          content:
+            'Vue i18n JSON 구조 전환으로 번역 문장을 코드에 반영하는 작업이 평균 일주일 → 약 3시간으로 단축, 13개국 다국어 지원 체계 확보',
+        },
+        { content: 'JSP → Vue SPA 전환으로 서버 렌더링 의존도 제거, 클라이언트 사이드 렌더링 기반 구조 확보' },
+        { content: '쿠키 기반 언어 처리 전환으로 도메인 분기에 따른 불필요한 리렌더링 제거, 페이지 전환 안정성 향상' },
+        {
+          content:
+            'Google OAuth 2.0 기반 소셜 로그인 옵션 추가로 가입·로그인 절차 간소화, JWT Refresh Token 로테이션 도입으로 토큰 탈취 시 재사용 차단',
+        },
+      ],
+    },
+    {
+      title: '사내 지출경비 전자결재 시스템 도입',
+      where: '슈어엠 주식회사 (단독 설계·개발)',
+      startedAt: '2024-11',
+      endedAt: '2025-01',
+      descriptions: [
+        { content: '배경', weight: 'BOLD' },
+        {
+          content:
+            '엑셀 및 수기 방식으로 운영되던 지출경비 결재 프로세스에서 문서 누락 및 처리 지연 문제가 반복 발생. 전자결재 시스템을 처음부터 설계·구축하여 결재 흐름 자동화 및 운영 효율화를 담당.',
+        },
+        { content: '구현', weight: 'BOLD' },
+        {
+          content: 'Spring Security 기반 역할별 결재 권한 분리',
+          weight: 'MEDIUM',
+          descriptions: [
+            {
+              content:
+                '팀원·팀장·총무 등 역할별 결재 권한을 Spring Security로 분리 설계. 각 역할이 접근 가능한 결재 단계와 수행 가능한 액션(요청·승인·반려·취소)을 명확히 구분하여 권한 오남용 차단',
+            },
+            { content: '역할 기반 접근 제어(RBAC) 구조로 설계하여 향후 역할 추가 시 권한 설정만으로 확장 가능한 구조 확보' },
+          ],
+        },
+        {
+          content: '공통 결재 프로세스 기반 확장 구조 설계',
+          weight: 'MEDIUM',
+          descriptions: [
+            {
+              content:
+                '체력단련비, 연장근무일지 등 향후 추가될 결재 문서 유형을 고려하여 공통 결재 프로세스를 추상화. 문서 유형별 세부 로직만 구현하면 되는 구조로 설계하여 신규 결재 문서 추가 시 기존 코드 수정 없이 확장 가능',
+            },
+            { content: '결재 상태(요청·승인·반려·취소)를 공통 흐름으로 정의하고 문서 유형과 분리하여 유지보수 부담 최소화' },
+          ],
+        },
+        {
+          content: '단계별 사내 메신저 알림 체계 구축',
+          weight: 'MEDIUM',
+          descriptions: [
+            {
+              content:
+                '결재 요청·취소·승인·반려 각 단계에서 관련 담당자에게 Rocket.Chat REST API 연동으로 알림이 자동 발송되는 구조 구축, 결재 단계와 역할 기준으로 발송 대상 설정',
+            },
+          ],
+        },
+        { content: '성과', weight: 'BOLD' },
+        {
+          content:
+            '사내 임직원 50명이 사용하는 전자결재 시스템을 3개월 내 단독 설계·구축, 엑셀·수기 기반 결재 프로세스를 전면 시스템화',
+        },
+        { content: '역할 기반 권한 분리로 결재 단계별 접근 제어 명확화, 권한 오남용 및 문서 누락 리스크 제거' },
+        { content: '공통 결재 프로세스 추상화로 신규 결재 문서 추가 시 기존 코드 수정 없이 확장 가능, 추가 개발 비용 최소화' },
+        { content: '단계별 알림 자동화로 수동 확인 없이 결재 진행 상황 실시간 파악, 처리 지연 문제 개선' },
       ],
     },
   ],

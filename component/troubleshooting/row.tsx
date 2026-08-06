@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react';
-import { IOpenSource } from './IOpenSource';
+import { ITroubleshooting } from './ITroubleshooting';
 import { EmptyRowCol } from '../common';
 import { CommonRows } from '../common/CommonRow';
 import { IRow } from '../common/IRow';
 
-export default function OpenSourceRow({
+export default function TroubleshootingRow({
   payload,
-}: PropsWithChildren<{ payload: IOpenSource.Payload }>) {
+}: PropsWithChildren<{ payload: ITroubleshooting.Payload }>) {
   return (
     <EmptyRowCol>
       {payload.list.map((item, index) => (
@@ -16,12 +16,11 @@ export default function OpenSourceRow({
   );
 }
 
-function serialize(item: IOpenSource.Item): IRow.Payload {
+function serialize(item: ITroubleshooting.Item): IRow.Payload {
   return {
-    left: {
-      title: item.title,
-    },
+    left: {},
     right: {
+      title: item.title,
       descriptions: item.descriptions,
     },
   };

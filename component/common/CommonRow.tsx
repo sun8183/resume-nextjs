@@ -27,10 +27,11 @@ export function CommonRows({
         <Col sm={12} md={9}>
           {right.title ? <h4>{right.title}</h4> : ''}
           {right.subTitle ? <i style={Style.gray}>{right.subTitle}</i> : ''}
+          {right.summary ? <p className="mt-2 mb-0">{right.summary}</p> : ''}
           {right.descriptions ? (
             <CommonDescription
               descriptions={right.descriptions}
-              option={{ padding: isNeedDescriptionPadding }}
+              option={{ padding: isNeedDescriptionPadding, hideBullet: right.hideDescriptionBullet }}
             />
           ) : (
             ''
