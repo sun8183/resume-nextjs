@@ -26,6 +26,7 @@ export const Style: Record<TStyleKey, CSSProperties> = {
     wordWrap: 'break-word',
     wordBreak: 'keep-all',
     lineHeight: 1.8,
+    paddingBottom: '80px',
   },
 
   sign: {
