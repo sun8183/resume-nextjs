@@ -2,7 +2,12 @@ import { ISkill } from '../component/skill/ISkill';
 
 const backEnd: ISkill.Skill = {
   category: 'Back-End',
-  items: [{ title: 'Java' }, { title: 'Spring Boot' }, { title: 'MyBatis' }, { title: 'Resilience4j' }],
+  items: [
+    { title: 'Java' },
+    { title: 'Spring Boot' },
+    { title: 'MyBatis' },
+    { title: 'Resilience4j' },
+  ],
 };
 
 const backEndPortfolio: ISkill.Skill = {

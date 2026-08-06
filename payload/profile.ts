@@ -28,7 +28,7 @@ const profile: IProfile.Payload = {
       link: 'https://github.com/sun8183',
       icon: faGithub,
     },
-  ]
+  ],
 };
 
 export default profile;

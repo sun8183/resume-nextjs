@@ -37,7 +37,11 @@ export function CommonDescription({
 
               return (
                 <>
-                  <Description description={description} number={number} key={descIndex.toString()} />
+                  <Description
+                    description={description}
+                    number={number}
+                    key={descIndex.toString()}
+                  />
                   {description.descriptions ? (
                     <DescriptionRecursion
                       descriptions={description.descriptions}

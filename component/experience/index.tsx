@@ -52,10 +52,9 @@ function getFormattingExperienceTotalDuration(payload: IExperience.Payload) {
   const durations = payload.list.reduce((acc: Duration[], item: IExperience.Item) => {
     const itemDurations = item.positions.map((position: IExperience.Position) => {
       // 시작월과 종료월을 모두 포함하여 계산하기 위해 종료일에 1개월을 더한다
-      const endedAt = (
-        position.endedAt
-          ? DateTime.fromFormat(position.endedAt, Util.LUXON_DATE_FORMAT.YYYY_LL)
-          : DateTime.local()
+      const endedAt = (position.endedAt
+        ? DateTime.fromFormat(position.endedAt, Util.LUXON_DATE_FORMAT.YYYY_LL)
+        : DateTime.local()
       ).plus({ month: 1 });
       const startedAt = DateTime.fromFormat(position.startedAt, Util.LUXON_DATE_FORMAT.YYYY_LL);
       return endedAt.diff(startedAt, ['years', 'months']);

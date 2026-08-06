@@ -31,7 +31,10 @@ export function CommonRows({
           {right.descriptions ? (
             <CommonDescription
               descriptions={right.descriptions}
-              option={{ padding: isNeedDescriptionPadding, hideBullet: right.hideDescriptionBullet }}
+              option={{
+                padding: isNeedDescriptionPadding,
+                hideBullet: right.hideDescriptionBullet,
+              }}
             />
           ) : (
             ''
