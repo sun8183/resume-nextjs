@@ -42,7 +42,6 @@ function serialize(payload: IPortfolio.Item): IRow.Payload {
       subTitle: payload.where,
       summary: payload.summary,
       descriptions: payload.descriptions,
-      hideDescriptionBullet: true,
     },
   };
 }
