@@ -70,11 +70,19 @@ const portfolio: IPortfolio.Payload = {
           descriptions: [
             {
               content:
-                'Outbox 패턴(주문)과 AFTER_COMMIT 발행(좋아요)으로 이벤트 정합성을 보장하고, Redis Lua dedup·DB UNIQUE 제약으로 중복 반영 방지',
+                '좋아요·주문 도메인 이벤트를 Kafka로 발행(commerce-api)하고 commerce-streamer가 소비해 Redis/MySQL에 반영하는 이벤트 기반 랭킹 파이프라인 구축',
             },
             {
               content:
-                'Redis ZSET 실시간 랭킹과 MySQL 배치 집계 캐싱을 병행해 실시간성과 조회 성능을 동시에 확보',
+                '주문 알림 이벤트는 Outbox 패턴으로 발행 유실까지 방지, 좋아요 이벤트는 AFTER_COMMIT 발행으로 롤백 트랜잭션의 팬텀 이벤트를 차단하는 등 도메인 중요도에 따라 이벤트 발행 신뢰성 수준을 차등 적용',
+            },
+            {
+              content:
+                'Redis Lua 스크립트로 dedup 체크와 ZINCRBY를 원자적으로 처리하고 DB event_key UNIQUE 제약을 이중 방어선으로 둬 멱등성 확보',
+            },
+            {
+              content:
+                '오늘자 랭킹은 Redis ZSET 실시간 조회, 과거 랭킹은 좋아요·주문 가중치(0.2:0.8)를 반영해 새벽 배치로 재계산한 MySQL 데이터를 TTL 1시간 만료로 캐싱해 조회하도록 이원화해 실시간성과 조회 성능을 동시에 확보',
             },
           ],
         },
