@@ -2,27 +2,22 @@ import { ISkill } from '../component/skill/ISkill';
 
 const backEnd: ISkill.Skill = {
   category: 'Back-End',
-  items: [
-    { title: 'Java' },
-    { title: 'Spring Boot' },
-    { title: 'MyBatis' },
-    { title: 'Resilience4j' },
-  ],
+  items: [{ title: 'Java' }, { title: 'Spring Boot' }, { title: 'MyBatis' }],
 };
 
 const backEndPortfolio: ISkill.Skill = {
   category: 'Back-End (포트폴리오)',
-  items: [{ title: 'Kafka' }, { title: 'Redis' }, { title: 'Spring JPA' }],
+  items: [
+    { title: 'Kafka' },
+    { title: 'Redis' },
+    { title: 'Spring JPA' },
+    { title: 'Resilience4j' },
+  ],
 };
 
 const database: ISkill.Skill = {
   category: 'Database',
   items: [{ title: 'MySQL' }, { title: 'MS-SQL' }],
-};
-
-const infraDevOpsPortfolio: ISkill.Skill = {
-  category: 'Infra & DevOps (포트폴리오)',
-  items: [{ title: 'AWS' }, { title: 'Docker' }, { title: 'Jenkins' }],
 };
 
 const frontEnd: ISkill.Skill = {
@@ -32,20 +27,12 @@ const frontEnd: ISkill.Skill = {
 
 const tools: ISkill.Skill = {
   category: 'Tools',
-  items: [
-    { title: 'IntelliJ' },
-    { title: 'Postman' },
-    { title: 'DBeaver' },
-    { title: 'k6' },
-    { title: 'Git/GitHub' },
-    { title: 'SVN' },
-    { title: 'Notion' },
-  ],
+  items: [{ title: 'k6' }, { title: 'Git/GitHub' }, { title: 'SVN' }],
 };
 
 const skill: ISkill.Payload = {
   disable: false,
-  skills: [backEnd, backEndPortfolio, database, infraDevOpsPortfolio, frontEnd, tools],
+  skills: [backEnd, backEndPortfolio, database, frontEnd, tools],
 };
 
 export default skill;

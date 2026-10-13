@@ -94,11 +94,14 @@ function Description({
   const { href, postImage, postHref, weight } = description;
   const content = number ? `${number}. ${description.content}` : description.content;
 
+  const imageStyle: CSSProperties = { maxWidth: '100%', height: 'auto' };
+
   const component = (() => {
     if (href && postImage) {
       return (
         <li style={getFontWeight(weight)}>
-          <HrefTargetBlank url={href} text={content} /> <img src={postImage} alt={postImage} />
+          <HrefTargetBlank url={href} text={content} />{' '}
+          <img src={postImage} alt={postImage} style={imageStyle} />
         </li>
       );
     }
@@ -113,7 +116,7 @@ function Description({
       return (
         <li style={getFontWeight(weight)}>
           {content} <HrefTargetBlank url={postHref} text={postHref} />{' '}
-          <img src={postImage} alt={postImage} />
+          <img src={postImage} alt={postImage} style={imageStyle} />
         </li>
       );
     }
@@ -124,10 +127,19 @@ function Description({
         </li>
       );
     }
+    if (postImage && !content) {
+      return (
+        <li style={{ ...getFontWeight(weight), listStyleType: 'none', textAlign: 'center' }}>
+          <a href={postImage} target="_blank" rel="noopener noreferrer">
+            <img src={postImage} alt={postImage} style={imageStyle} />
+          </a>
+        </li>
+      );
+    }
     if (postImage) {
       return (
         <li style={getFontWeight(weight)}>
-          {content} <img src={postImage} alt={postImage} />
+          {content} <img src={postImage} alt={postImage} style={imageStyle} />
         </li>
       );
     }

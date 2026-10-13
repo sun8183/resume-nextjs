@@ -5,6 +5,7 @@ const { homepage } = require('./package.json');
 const { NODE_ENV } = process.env;
 
 module.exports = withImages({
+  fileExtensions: ['jpg', 'jpeg', 'png', 'svg', 'gif', 'ico', 'webp', 'jp2', 'avif', 'pdf'],
   assetPrefix: (() => {
     if (NODE_ENV === 'production' && homepage) {
       try {
